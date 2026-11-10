@@ -1,0 +1,81 @@
+{
+  "name": "desk-for-odoo",
+  "version": "0.1.0",
+  "description": "Run Odoo 18, 19 and 20, Community and Enterprise, on your own computer: servers, live logs, databases and modules in one window.",
+  "main": "main.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --publish never"
+  },
+  "devDependencies": {
+    "electron": "45.2.3",
+    "electron-builder": "^26.18.0"
+  },
+  "dependencies": {
+    "pg": "^8.23.1"
+  },
+  "author": "Stevenmarp",
+  "homepage": "https://github.com/stevenmarp/desk-for-odoo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stevenmarp/desk-for-odoo.git"
+  },
+  "keywords": [
+    "odoo",
+    "odoo-18",
+    "odoo-19",
+    "odoo-20",
+    "desktop",
+    "electron",
+    "developer-tools",
+    "postgresql"
+  ],
+  "build": {
+    "appId": "xyz.stevenmarp.deskforodoo",
+    "productName": "Desk for Odoo",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "lib/**",
+      "src/**",
+      "build/icon-512.png",
+      "package.json"
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Development",
+      "icon": "build/icon.png"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icon.png"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        }
+      ],
+      "category": "public.app-category.developer-tools",
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "Desk-for-Odoo-Setup-${version}.${ext}"
+    },
+    "artifactName": "Desk-for-Odoo-${version}.${ext}"
+  }
+}

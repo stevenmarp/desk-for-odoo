@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://apps.odoocdn.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Desk for Odoo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Instances">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="4" width="26" height="19" rx="3"/><path d="M11 28h10M16 23v5"/><path class="bm-row" d="M12 9.5h11M12 13.5h11M12 17.5h11"/><circle class="bm-dot" cx="8" cy="9.5" r="1.4"/><circle class="bm-dot warn" cx="8" cy="13.5" r="1.4"/><circle class="bm-dot idle" cx="8" cy="17.5" r="1.4"/></svg>
+        <span>Desk for Odoo</span>
+      </div>
+      <div class="side-head">
+        <span>Instances</span>
+        <button class="icon-btn" id="add-instance" title="Add an Odoo instance" aria-label="Add an Odoo instance" data-icon="plus"></button>
+      </div>
+      <nav id="instance-list" class="instance-list"></nav>
+      <div class="side-links">
+        <button class="side-foot" id="open-store" data-icon-left="store">Apps by stevenmarp</button>
+        <button class="side-foot" id="open-support" data-icon-left="heart">Support this project</button>
+        <button class="side-foot" id="open-settings" data-icon-left="settings">Settings</button>
+      </div>
+    </aside>
+    <main id="main" class="main" tabindex="-1"></main>
+  </div>
+  <section id="tasks" class="tasks" aria-live="polite" aria-label="Running tasks"></section>
+  <div id="toasts" class="toasts" role="status" aria-live="polite"></div>
+  <dialog id="modal" class="modal"><form method="dialog" id="modal-form"></form></dialog>
+  <script src="icons.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
