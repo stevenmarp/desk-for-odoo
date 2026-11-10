@@ -26,6 +26,7 @@
         <a href="#what">What it does</a>
         <a href="#safe">Safety</a>
         <a href="#download">Download</a>
+        <a href="#faq">FAQ</a>
         <a href="#support">Support</a>
         <a class="gh" href="https://github.com/stevenmarp/desk-for-odoo">GitHub</a>
       </nav>
@@ -171,7 +172,25 @@ npm start</code></pre>
       </div>
     </section>
 
-    <section class="block alt support" id="support">
+    <section class="block alt faq" id="faq">
+      <div class="wrap">
+        <h2>Questions</h2>
+        <dl class="qa">
+          <dt>How is this different from the installer on odoo.com?</dt>
+          <dd>The installers on <a href="https://www.odoo.com/page/download">odoo.com/page/download</a> put one Odoo version on a computer as a service that is always on, for a company that runs Odoo on its own server, and there is no macOS build. Desk for Odoo runs several versions, Community and Enterprise, side by side on Windows, macOS and Linux, starts each one only when you need it, and adds the tools for working on Odoo: live logs, database copies with neutralize, admin password, modules from your own folders. It runs the same Odoo source, so what you see in Desk is how Odoo behaves.</dd>
+          <dt>Can I run my company on it?</dt>
+          <dd>No. Desk is for testing, demos, training and development on your own computer: every server listens only on <code>127.0.0.1</code>, runs as one process, stops when you close the app, and has scheduled actions off. A company that uses Odoo every day needs it on a server (or Odoo Online, Odoo.sh), reachable by its users, with HTTPS, workers, scheduled actions on and backups every day.</dd>
+          <dt>Do I have to install PostgreSQL and Python myself?</dt>
+          <dd>For now, yes (see <a href="#download">Download</a>). A one-click setup that downloads and runs PostgreSQL, Python and the PDF engine for you is the next step on the roadmap.</dd>
+          <dt>Do I need an Enterprise license?</dt>
+          <dd>Only for Enterprise. Desk never ships Enterprise code: you point it to a copy you are allowed to use, or download it from GitHub if your account has access.</dd>
+          <dt>Is this made by Odoo S.A.?</dt>
+          <dd>No. Desk for Odoo is an independent project. Odoo is a trademark of Odoo S.A.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="block support" id="support">
       <div class="wrap support-grid">
         <div>
           <h2>Made by an Odoo developer</h2>

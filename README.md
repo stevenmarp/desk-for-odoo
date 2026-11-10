@@ -130,6 +130,21 @@ across a team, and demo-ready database templates. The free edition keeps everyth
 
 **Is this made by Odoo S.A.?** No. Desk for Odoo is an independent project. Odoo is a trademark of Odoo S.A.
 
+**How is this different from the installer on odoo.com?** The installers on
+[odoo.com/page/download](https://www.odoo.com/page/download) put one Odoo version on a computer as a service that is
+always on, for a company that runs Odoo on its own server, and there is no macOS build. Desk for Odoo runs several
+versions, Community and Enterprise, side by side on Windows, macOS and Linux, starts each one only when you need it, and
+adds the tools for working on Odoo: live logs, database copies with neutralize, admin password, modules from your own
+folders. It runs the same Odoo source, so what you see in Desk is how Odoo behaves.
+
+**Can I run my company on it?** No. Desk is for testing, demos, training and development on your own computer: every
+server listens only on `127.0.0.1`, runs as one process, stops when you close the app, and has scheduled actions off.
+A company that uses Odoo every day needs it on a server (or Odoo Online, Odoo.sh), reachable by its users, with HTTPS,
+workers, scheduled actions on and backups every day.
+
+**Do I have to install PostgreSQL and Python myself?** For now, yes (see [Download](#download)). A one-click setup
+that downloads and runs PostgreSQL, Python and the PDF engine for you is the next step on the roadmap.
+
 **Do I need an Enterprise license?** Only for Enterprise. Desk never ships Enterprise code: you point it to a copy
 you are allowed to use.
 
