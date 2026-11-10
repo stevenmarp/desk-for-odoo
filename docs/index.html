@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Desk for Odoo: run Odoo 18, 19 and 20 on your own computer</title>
+  <meta name="description" content="Free, open source desktop app for Windows, macOS and Linux. Run Odoo 18, 19 and 20, Community or Enterprise, side by side: servers, live logs, databases and modules without a terminal.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="icon-128.png" type="image/png">
+  <link rel="stylesheet" href="site.css">
+  <meta property="og:title" content="Desk for Odoo">
+  <meta property="og:description" content="Run Odoo 18, 19 and 20, Community or Enterprise, on your own computer. Free and open source.">
+  <meta property="og:image" content="https://stevenmarp.github.io/desk-for-odoo/og.png">
+  <meta property="og:url" content="https://stevenmarp.github.io/desk-for-odoo/">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <div class="wrap top-row">
+      <a class="brand" href="#top" aria-label="Desk for Odoo, top of the page">
+        <img src="icon-128.png" alt="" width="32" height="32">
+        <span>Desk for Odoo</span>
+      </a>
+      <nav aria-label="Sections">
+        <a href="#what">What it does</a>
+        <a href="#safe">Safety</a>
+        <a href="#download">Download</a>
+        <a href="#support">Support</a>
+        <a class="gh" href="https://github.com/stevenmarp/desk-for-odoo">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div class="hero-text">
+          <h1>Odoo 18, 19 and 20 on your own computer, in one window.</h1>
+          <p class="lead">Community or Enterprise, side by side. Start the servers, read the logs, back up and copy databases and install modules without opening a terminal.</p>
+          <div class="cta">
+            <a class="btn primary" id="cta-download" href="https://github.com/stevenmarp/desk-for-odoo/releases/latest">Download Desk for Odoo</a>
+            <a class="btn" href="#download">Windows, macOS and Linux</a>
+          </div>
+          <p class="fine" id="cta-note">Free and open source under the MIT license. No account, no telemetry.</p>
+        </div>
+        <div class="board" role="img" aria-label="Six Odoo instances starting one after the other: Odoo 18, 19 and 20, Community and Enterprise, each on its own port.">
+          <div class="board-head"><span>Instances</span><span class="board-count">6 running</span></div>
+          <ol class="board-list">
+            <li style="--i:0"><span class="dot"></span><span class="name">Odoo 18 Community</span><span class="port">18069</span></li>
+            <li style="--i:1"><span class="dot"></span><span class="name">Odoo 19 Community</span><span class="port">19069</span></li>
+            <li style="--i:2"><span class="dot"></span><span class="name">Odoo 20 Community</span><span class="port">20069</span></li>
+            <li style="--i:3" class="ee"><span class="dot"></span><span class="name">Odoo 18 Enterprise</span><span class="port">18070</span></li>
+            <li style="--i:4" class="ee"><span class="dot"></span><span class="name">Odoo 19 Enterprise</span><span class="port">19070</span></li>
+            <li style="--i:5" class="ee"><span class="dot"></span><span class="name">Odoo 20 Enterprise</span><span class="port">20070</span></li>
+          </ol>
+          <pre class="board-log" aria-hidden="true"><span>INFO desk_20_ee odoo.modules.loading: Modules loaded.</span>
+<span>INFO ? odoo.service.server: HTTP service running on 127.0.0.1:20070</span></pre>
+        </div>
+      </div>
+      <div class="wrap shot-hero">
+        <img src="img/hero.webp" width="2560" height="1440" alt="Desk for Odoo with six instances running and the overview of Odoo 20 Enterprise: address, warnings, errors, source folders and files on disk.">
+      </div>
+    </section>
+
+    <section class="block" id="what">
+      <div class="wrap">
+        <h2>The work you do by hand, one click each</h2>
+        <p class="section-lead">Running Odoo locally means the right Python per version, PostgreSQL, a 1.4 GB clone, a config file per version, one terminal per server and <code>pg_dump</code> plus a filestore copy for every backup.</p>
+        <table class="compare">
+          <thead><tr><th scope="col">You want to</th><th scope="col">By hand</th><th scope="col">With Desk for Odoo</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Run Odoo 19 for the first time</th><td>Install Python and PostgreSQL, clone, pip, write <code>odoo.conf</code>, run <code>odoo-bin</code></td><td><strong>Add instance</strong>, then <strong>Start</strong></td></tr>
+            <tr><th scope="row">Run 18, 19 and 20 at the same time</th><td>Separate environments, ports and configs, three terminals</td><td>One click each, a free port picked for you</td></tr>
+            <tr><th scope="row">Find why the server fails</th><td>Scroll a terminal</td><td>Live log with warnings and errors counted on the tab, filters and search</td></tr>
+            <tr><th scope="row">Back up a database</th><td><code>pg_dump</code> and a copy of the filestore</td><td><strong>Back up</strong>: one zip that Odoo's own database manager restores</td></tr>
+            <tr><th scope="row">Try something on a copy of production</th><td>Restore, then switch off mail servers, crons and payments</td><td><strong>Restore</strong> or <strong>Duplicate</strong> with <strong>Neutralize</strong> ticked</td></tr>
+            <tr><th scope="row">Install or upgrade modules</th><td>Stop the server, <code>-i</code> or <code>-u</code>, start again</td><td>Tick the modules, <strong>Install</strong> or <strong>Upgrade</strong></td></tr>
+            <tr><th scope="row">Recover the admin password</th><td><code>odoo-bin shell</code> and a script</td><td><strong>Admin password</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="block alt">
+      <div class="wrap feature">
+        <div class="feature-text">
+          <h2>See the server, not a terminal</h2>
+          <p>Every instance has its own live log. Warnings and errors are counted on the tab and highlighted in the text, so a failing module shows up before you open the browser. Filter by level, search, and open the log file on disk when you need the full history.</p>
+        </div>
+        <img src="img/logs.webp" width="2560" height="1600" loading="lazy" alt="The Logs tab of Odoo 20 Enterprise with level filters, search and the server output.">
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap feature flip">
+        <div class="feature-text">
+          <h2>Databases you can copy without fear</h2>
+          <p>Create a database with or without demo data, back it up to a zip, restore it, duplicate it and neutralize the copy so it never sends a mail or charges a card. A badge tells you which copies are neutralized. Delete asks you to type the name.</p>
+          <p>Every action runs Odoo's own commands (<code>odoo-bin db</code>, <code>neutralize</code>, <code>shell</code>), so the filestore always comes along.</p>
+        </div>
+        <img src="img/databases.webp" width="2560" height="1600" loading="lazy" alt="The Databases tab with a demo database and a neutralized training copy, each with Open, Back up, Duplicate, Neutralize, Admin password and Detach.">
+      </div>
+    </section>
+
+    <section class="block alt">
+      <div class="wrap feature">
+        <div class="feature-text">
+          <h2>Modules from your own folders</h2>
+          <p>Add your addons folders per instance; they come before Odoo's. Desk lists every module with its state in the database you pick. Tick several, across searches, and install or upgrade them in one go: the server stops and starts again around it.</p>
+        </div>
+        <img src="img/modules.webp" width="2560" height="1600" loading="lazy" alt="The Modules tab filtered on crm, with installed and not installed modules and the Install and Upgrade buttons.">
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap feature flip">
+        <div class="feature-text">
+          <h2>Community or Enterprise, the right Python</h2>
+          <p>Download Odoo Community from GitHub or point to a folder you already have. Enterprise comes from your own copy, or from <code>github.com/odoo/enterprise</code> if your account has access: the token is used for that download and never saved.</p>
+          <p>Desk lists the Pythons on your computer that fit the version and can make a separate environment with the Odoo requirements, taking ready-made wheels for the packages that often fail to build.</p>
+        </div>
+        <img src="img/add-instance.webp" width="2560" height="1600" loading="lazy" alt="The Add an Odoo instance dialog with the Odoo version, edition, source and Python.">
+      </div>
+    </section>
+
+    <section class="block alt safe" id="safe">
+      <div class="wrap">
+        <h2>Safe next to the databases you already have</h2>
+        <ul class="checks">
+          <li><strong>Only its own databases.</strong> An instance runs on the databases it created, restored, duplicated or that you attached. Other databases on the same PostgreSQL are never loaded.</li>
+          <li><strong>Scheduled actions off.</strong> Crons stay quiet unless you switch them on for an instance, so no mail queue, sync or check-out job runs by surprise.</li>
+          <li><strong>Only on this computer.</strong> Every server listens on <code>127.0.0.1</code>, so a demo database with <code>admin</code>/<code>admin</code> is not reachable from your network.</li>
+          <li><strong>Nothing hidden.</strong> Sources, environments, configurations, filestores, logs and backups live in one workspace folder you can open from the app.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block" id="download">
+      <div class="wrap">
+        <h2>Download</h2>
+        <p class="section-lead">Version <span data-version>0.1.0</span>. The builds are not signed yet: Windows shows <em>Windows protected your PC</em> (More info, then Run anyway) and macOS asks you to open it from System Settings, Privacy &amp; Security the first time.</p>
+        <div class="downloads">
+          <a class="dl" data-asset=".exe" href="https://github.com/stevenmarp/desk-for-odoo/releases/latest">
+            <span class="dl-os">Windows 10 and 11</span>
+            <span class="dl-file" data-file>Installer (.exe)</span>
+          </a>
+          <a class="dl" data-asset=".dmg" href="https://github.com/stevenmarp/desk-for-odoo/releases/latest">
+            <span class="dl-os">macOS, Apple silicon and Intel</span>
+            <span class="dl-file" data-file>Disk image (.dmg)</span>
+          </a>
+          <a class="dl" data-asset=".AppImage" href="https://github.com/stevenmarp/desk-for-odoo/releases/latest">
+            <span class="dl-os">Linux</span>
+            <span class="dl-file" data-file>AppImage</span>
+            <span class="dl-file">Make it executable (<code>chmod +x</code>), then run it</span>
+          </a>
+        </div>
+        <div class="needs">
+          <h3>You also need, once</h3>
+          <ul>
+            <li><a href="https://www.postgresql.org/download/">PostgreSQL</a> with a user that can create databases: 12 or later for Odoo 18, 13 for Odoo 19, 16 for Odoo 20.</li>
+            <li><a href="https://www.python.org/downloads/">Python</a> in the range of the Odoo version: 3.10 to 3.12 for 18, 3.10 to 3.13 for 19, 3.12 to 3.14 for 20.</li>
+            <li><a href="https://git-scm.com/downloads">git</a>, to download the Odoo source.</li>
+          </ul>
+          <h3>Or run it from source</h3>
+          <pre class="code"><code>git clone https://github.com/stevenmarp/desk-for-odoo.git
+cd desk-for-odoo
+npm install
+npm start</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="block alt support" id="support">
+      <div class="wrap support-grid">
+        <div>
+          <h2>Made by an Odoo developer</h2>
+          <p>Desk for Odoo is built and maintained by Stevenmarp, who also publishes modules for Odoo 18, 19 and 20 on the Odoo Apps store. Desk stays free and open source; this is how you keep it going.</p>
+        </div>
+        <ul class="ways">
+          <li><a href="https://apps.odoo.com/apps/modules/browse?order=Newest&amp;repo_maintainer_id=512936"><strong>Apps by stevenmarp</strong><span>Pick a module you need on the Odoo Apps store. The list is also inside Desk.</span></a></li>
+          <li><a href="https://saweria.co/Stevenmarp"><strong>Buy a coffee on Saweria</strong><span>A one-time tip, any amount.</span></a></li>
+          <li><a href="https://github.com/stevenmarp/desk-for-odoo"><strong>Star the repository</strong><span>It helps other Odoo people find Desk. Bug reports welcome.</span></a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-row">
+      <p>MIT license, © 2026 Stevenmarp.</p>
+      <p>Desk for Odoo is an independent project. Odoo is a trademark of Odoo S.A.</p>
+    </div>
+  </footer>
+  <script src="site.js" defer></script>
+</body>
+</html>

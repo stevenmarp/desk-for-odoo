@@ -12,7 +12,7 @@ Community or Enterprise, side by side: start the servers, read the logs, manage 
 ![Odoo 18 · 19 · 20](https://img.shields.io/badge/Odoo-18%20%7C%2019%20%7C%2020-7c3aed?style=flat-square)
 ![Community and Enterprise](https://img.shields.io/badge/Community%20%2B%20Enterprise-supported-2a3446?style=flat-square)
 
-[Download](#download) · [What it does](#what-it-does) · [Screens](#screens) · [FAQ](#faq) · [Support](#support)
+[Website](https://stevenmarp.github.io/desk-for-odoo/) · [Download](#download) · [What it does](#what-it-does) · [Screens](#screens) · [FAQ](#faq) · [Support](#support)
 
 ![Desk for Odoo running Odoo 18, 19 and 20, Community and Enterprise](docs/img/hero.webp)
 
