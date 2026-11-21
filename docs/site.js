@@ -1,4 +1,27 @@
 (() => {
+  const themes = ["system", "light", "dark"];
+  const themeButton = document.getElementById("theme-toggle");
+  const readTheme = () => {
+    try {
+      const saved = localStorage.getItem("desk-theme");
+      return themes.includes(saved) ? saved : "system";
+    } catch (_) { return "system"; }
+  };
+  const applyTheme = (theme) => {
+    if (theme === "system") delete document.documentElement.dataset.theme;
+    else document.documentElement.dataset.theme = theme;
+    try { localStorage.setItem("desk-theme", theme); } catch (_) { /* System fallback still works. */ }
+    const label = theme[0].toUpperCase() + theme.slice(1);
+    themeButton.querySelector("[data-theme-label]").textContent = label;
+    themeButton.setAttribute("aria-label", `Appearance: ${label}`);
+    themeButton.title = `Appearance: ${label}`;
+  };
+  applyTheme(readTheme());
+  themeButton.addEventListener("click", () => {
+    const current = readTheme();
+    applyTheme(themes[(themes.indexOf(current) + 1) % themes.length]);
+  });
+
   const platform = ((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || navigator.userAgent).toLowerCase();
   const os = platform.includes("win") ? ".exe" : platform.includes("mac") ? ".dmg" : platform.includes("linux") && !/android/.test(navigator.userAgent.toLowerCase()) ? ".AppImage" : "";
   const names = { ".exe": "Windows", ".dmg": "macOS", ".AppImage": "Linux" };

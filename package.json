@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder --publish never"
+    "dist": "electron-builder --publish never",
+    "test": "node --test tests/*.test.js"
   },
   "devDependencies": {
     "electron": "45.2.3",

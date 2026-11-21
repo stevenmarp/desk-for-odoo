@@ -7,11 +7,12 @@ if (process.env.DESK_WORKSPACE) app.setPath("userData", path.join(workspace, ".e
 
 const STORE = "https://apps.odoo.com/apps/modules/browse?order=Purchases&repo_maintainer_id=512936";
 const LINKS = {
+  doctor: "https://odoo-doctor.com",
   store: "https://apps.odoo.com/apps/modules/browse?order=Newest&repo_maintainer_id=512936",
   saweria: "https://saweria.co/Stevenmarp",
   repo: "https://github.com/stevenmarp/desk-for-odoo",
 };
-const OPEN_ALLOWED = [/^https:\/\/apps\.odoo\.com\//, /^https:\/\/github\.com\//, /^https:\/\/saweria\.co\//];
+const OPEN_ALLOWED = [/^https:\/\/odoo-doctor\.com\/?(?:[?#].*)?$/, /^https:\/\/apps\.odoo\.com\//, /^https:\/\/github\.com\//, /^https:\/\/saweria\.co\//];
 const storeCache = new Map();
 
 let win;
@@ -148,7 +149,7 @@ function createWindow() {
     minWidth: 960,
     minHeight: 600,
     title: "Desk for Odoo",
-    backgroundColor: nativeTheme.shouldUseDarkColors ? "#10151f" : "#f5f7fa",
+    backgroundColor: nativeTheme.shouldUseDarkColors ? "#201721" : "#fffafd",
     webPreferences: { preload: path.join(__dirname, "preload.js"), contextIsolation: true, nodeIntegration: false, sandbox: true },
   });
   win.removeMenu();

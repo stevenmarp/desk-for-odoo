@@ -6,6 +6,7 @@
   <title>Desk for Odoo: run Odoo 18, 19 and 20 on your own computer</title>
   <meta name="description" content="Free, open source desktop app for Windows, macOS and Linux. Run Odoo 18, 19 and 20, Community or Enterprise, side by side: servers, live logs, databases and modules without a terminal.">
   <meta name="color-scheme" content="light dark">
+  <script src="theme-init.js?v=2"></script>
   <link rel="icon" href="icon-128.png" type="image/png">
   <link rel="stylesheet" href="site.css">
   <meta property="og:title" content="Desk for Odoo">
@@ -28,7 +29,9 @@
         <a href="#download">Download</a>
         <a href="#faq">FAQ</a>
         <a href="#support">Support</a>
+        <a class="doctor-link" href="https://odoo-doctor.com" target="_blank" rel="noopener noreferrer" aria-label="Open Odoo Doctor in a new tab">Odoo Doctor</a>
         <a class="gh" href="https://github.com/stevenmarp/desk-for-odoo">GitHub</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Appearance: System" title="Appearance: System"><span aria-hidden="true">◐</span><span data-theme-label>System</span></button>
       </nav>
     </div>
   </header>
@@ -37,6 +40,7 @@
     <section class="hero" id="top">
       <div class="wrap hero-grid">
         <div class="hero-text">
+          <p class="eyebrow">Local Odoo workspace · Community &amp; Enterprise</p>
           <h1>Odoo 18, 19 and 20 on your own computer, in one window.</h1>
           <p class="lead">Community or Enterprise, side by side. Start the servers, read the logs, back up and copy databases and install modules without opening a terminal.</p>
           <div class="cta">
@@ -48,12 +52,12 @@
         <div class="board" role="img" aria-label="Six Odoo instances starting one after the other: Odoo 18, 19 and 20, Community and Enterprise, each on its own port.">
           <div class="board-head"><span>Instances</span><span class="board-count">6 running</span></div>
           <ol class="board-list">
-            <li style="--i:0"><span class="dot"></span><span class="name">Odoo 18 Community</span><span class="port">18069</span></li>
-            <li style="--i:1"><span class="dot"></span><span class="name">Odoo 19 Community</span><span class="port">19069</span></li>
-            <li style="--i:2"><span class="dot"></span><span class="name">Odoo 20 Community</span><span class="port">20069</span></li>
-            <li style="--i:3" class="ee"><span class="dot"></span><span class="name">Odoo 18 Enterprise</span><span class="port">18070</span></li>
-            <li style="--i:4" class="ee"><span class="dot"></span><span class="name">Odoo 19 Enterprise</span><span class="port">19070</span></li>
-            <li style="--i:5" class="ee"><span class="dot"></span><span class="name">Odoo 20 Enterprise</span><span class="port">20070</span></li>
+            <li><span class="dot"></span><span class="name">Odoo 18 Community</span><span class="port">18069</span></li>
+            <li><span class="dot"></span><span class="name">Odoo 19 Community</span><span class="port">19069</span></li>
+            <li><span class="dot"></span><span class="name">Odoo 20 Community</span><span class="port">20069</span></li>
+            <li class="ee"><span class="dot"></span><span class="name">Odoo 18 Enterprise</span><span class="port">18070</span></li>
+            <li class="ee"><span class="dot"></span><span class="name">Odoo 19 Enterprise</span><span class="port">19070</span></li>
+            <li class="ee"><span class="dot"></span><span class="name">Odoo 20 Enterprise</span><span class="port">20070</span></li>
           </ol>
           <pre class="board-log" aria-hidden="true"><span>INFO desk_20_ee odoo.modules.loading: Modules loaded.</span>
 <span>INFO ? odoo.service.server: HTTP service running on 127.0.0.1:20070</span></pre>
@@ -208,9 +212,9 @@ npm start</code></pre>
   <footer class="foot">
     <div class="wrap foot-row">
       <p>MIT license, © 2026 Stevenmarp.</p>
-      <p>Desk for Odoo is an independent project. Odoo is a trademark of Odoo S.A.</p>
+      <p><a href="https://odoo-doctor.com">Odoo Doctor</a> · Desk for Odoo is an independent project. Odoo is a trademark of Odoo S.A.</p>
     </div>
   </footer>
-  <script src="site.js" defer></script>
+  <script src="site.js?v=2" defer></script>
 </body>
 </html>
