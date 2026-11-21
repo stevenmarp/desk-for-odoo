@@ -37,7 +37,7 @@ function editionLabel(inst) {
 function renderSidebar() {
   const list = $("#instance-list");
   if (!state.instances.length) {
-    list.innerHTML = `<p class="muted" style="padding:8px 10px">No instance yet.</p>`;
+    list.innerHTML = `<p class="muted empty-sidebar">No instance yet.</p>`;
     return;
   }
   list.innerHTML = state.instances.map((inst) => `
@@ -51,6 +51,8 @@ function renderSidebar() {
 function renderWelcome() {
   $("#main").innerHTML = `
     <div class="welcome">
+      <div class="welcome-mark">${icon("play", 22)}</div>
+      <div class="welcome-kicker">Your local Odoo control room</div>
       <h1>Run Odoo on this computer</h1>
       <p>Add Odoo 18, 19 or 20, Community or Enterprise. Desk for Odoo downloads the source, prepares Python, and gives you the server, its logs, your databases and modules in one window.</p>
       <button class="btn primary" id="welcome-add">${icon("plus")} Add an Odoo instance</button>
@@ -182,10 +184,10 @@ async function renderOverview(inst, panel) {
   if (!box) return;
   if (missing === null) box.innerHTML = `<div class="note err">${icon("alert")} This Python cannot be started. Choose another one in Settings.</div>`;
   else if (missing.length) {
-    box.innerHTML = `<div class="note">${icon("alert")}<div>Missing Python packages: <span class="mono">${esc(missing.join(", "))}</span>.<br><button class="btn small" id="make-venv" style="margin-top:8px">Create a Python environment with the Odoo requirements</button></div></div>`;
+    box.innerHTML = `<div class="note">${icon("alert")}<div>Missing Python packages: <span class="mono">${esc(missing.join(", "))}</span>.<br><button class="btn small mt-8" id="make-venv">Create a Python environment with the Odoo requirements</button></div></div>`;
     $("#make-venv").onclick = () => venvDialog(inst);
   } else {
-    box.innerHTML = `<p class="muted" style="margin:14px 0 8px">${icon("check")} The Python packages Odoo needs are installed.</p><button class="btn small" id="make-venv">New Python environment</button>`;
+    box.innerHTML = `<p class="muted python-ready">${icon("check")} The Python packages Odoo needs are installed.</p><button class="btn small" id="make-venv">New Python environment</button>`;
     $("#make-venv").onclick = () => venvDialog(inst);
   }
 }
@@ -387,7 +389,7 @@ function createDbDialog(inst) {
   dialog({
     title: `New Odoo ${inst.version} database`,
     body: `${field("name", "Database name", `<input class="input" name="name" required pattern="[A-Za-z0-9][A-Za-z0-9_.\\-]*" placeholder="my_company">`, "Letters, digits, _ . and -")}
-      <label class="check" style="margin-bottom:14px"><input type="checkbox" name="demo"> Load demo data</label>
+      <label class="check check-spaced"><input type="checkbox" name="demo"> Load demo data</label>
       ${field("login", "Admin login", `<input class="input" name="login" value="admin">`)}
       ${field("password", "Admin password", `<input class="input" name="password" type="password" value="admin" autocomplete="new-password">`)}
       ${field("modules", "Also install", `<input class="input" name="modules" placeholder="sale_management, stock, website">`, "Technical names, separated by commas")}
@@ -483,7 +485,7 @@ function drawModules(inst) {
   const shown = rows.slice(0, 400);
   box.innerHTML = !rows.length ? `<div class="card empty">No module matches.</div>` : `
     <table class="list">
-      <thead><tr><th style="width:36px"><span class="muted" aria-hidden="true">✓</span></th><th>Technical name</th><th>Title</th><th>Version</th><th>State</th></tr></thead>
+      <thead><tr><th class="select-col"><span class="muted" aria-hidden="true">✓</span></th><th>Technical name</th><th>Title</th><th>Version</th><th>State</th></tr></thead>
       <tbody>${shown.map((mod) => `
         <tr>
           <td><input type="checkbox" class="mod-check" value="${esc(mod.name)}" aria-label="Select ${esc(mod.name)}" ${mod.installable ? "" : "disabled"} ${picked.has(mod.name) ? "checked" : ""}></td>
@@ -515,7 +517,7 @@ function drawModules(inst) {
 function renderInstanceSettings(inst, panel) {
   const locked = inst.status !== "stopped";
   panel.innerHTML = `
-    <form class="card" id="inst-form" style="max-width:760px">
+    <form class="card settings-card" id="inst-form">
       <h2>Instance settings</h2>
       ${locked ? `<div class="note">${icon("alert")} Stop the server to change these settings.</div><br>` : ""}
       ${field("name", "Name", `<input class="input" name="name" value="${esc(inst.name)}" ${locked ? "disabled" : ""}>`)}
@@ -526,9 +528,9 @@ function renderInstanceSettings(inst, panel) {
       </div></div>
       ${field("enterprisePath", "Enterprise folder", `<div class="row"><input class="input" name="enterprisePath" value="${esc(inst.enterprisePath)}" ${locked ? "disabled" : ""}><button type="button" class="btn" data-browse="enterprisePath" ${locked ? "disabled" : ""}>Browse</button></div>`)}
       ${field("python", "Python", `<div class="row"><input class="input mono" name="python" value="${esc(inst.python)}" ${locked ? "disabled" : ""}><button type="button" class="btn" data-browse-file="python" ${locked ? "disabled" : ""}>Browse</button></div>`)}
-      <label class="check" style="margin-bottom:14px"><input type="checkbox" name="crons" ${inst.crons ? "checked" : ""} ${locked ? "disabled" : ""}> <span>Run scheduled actions (crons) on this instance's databases<br><span class="muted">Off by default: emails, synchronisations and other jobs stay quiet while you work.</span></span></label>
-      ${field("addons", "Extra addons folders", `<textarea class="input mono" name="addons" rows="4" style="height:auto;padding:8px 10px" ${locked ? "disabled" : ""}>${esc(inst.addons.join("\n"))}</textarea>`, "One folder per line. They come before the Odoo addons.")}
-      <div class="row" style="justify-content:space-between">
+      <label class="check check-spaced"><input type="checkbox" name="crons" ${inst.crons ? "checked" : ""} ${locked ? "disabled" : ""}> <span>Run scheduled actions (crons) on this instance's databases<br><span class="muted">Off by default: emails, synchronisations and other jobs stay quiet while you work.</span></span></label>
+      ${field("addons", "Extra addons folders", `<textarea class="input mono addons-input" name="addons" rows="4" ${locked ? "disabled" : ""}>${esc(inst.addons.join("\n"))}</textarea>`, "One folder per line. They come before the Odoo addons.")}
+      <div class="row row-between">
         <button type="button" class="btn danger" id="inst-remove" ${locked ? "disabled" : ""}>${icon("trash")} Remove from Desk</button>
         <button class="btn primary" ${locked ? "disabled" : ""}>Save</button>
       </div>
@@ -577,7 +579,7 @@ async function renderStore() {
           <button class="btn" id="store-all">${icon("external")} All apps on the store</button>
         </div>
       </div>
-      <div style="height:14px"></div>
+      <div class="section-spacer"></div>
     </header>
     <section class="body"><div id="store-grid" class="store-grid"><p class="muted">Loading the store…</p></div></section>`;
   document.querySelectorAll("[data-series]").forEach((button) => {
@@ -610,12 +612,12 @@ async function supportDialog() {
   dialog({
     title: "Support Desk for Odoo",
     body: `<p>Desk for Odoo is free and open source. You keep it alive by:</p>
-      <ul style="padding-left:18px;line-height:1.8">
+      <ul class="compact-list">
         <li>buying a module you need from <strong>Apps by stevenmarp</strong>,</li>
         <li>a coffee on Saweria,</li>
         <li>giving the repository a star and reporting bugs.</li>
       </ul>
-      <div class="row" style="flex-wrap:wrap">
+      <div class="row row-wrap">
         <button type="button" class="btn" data-link="saweria">${icon("heart")} Saweria</button>
         <button type="button" class="btn" data-link="repo">${icon("external")} Repository</button>
         <button type="button" class="btn" data-store>${icon("store")} Apps by stevenmarp</button>
@@ -695,10 +697,10 @@ async function addInstanceDialog() {
         <label class="choice"><input type="radio" name="eeSource" value="download"> Download from GitHub</label>
       </div>
       <div class="row" id="ee-folder"><input class="input" name="enterprisePath" id="f-enterprisePath" placeholder="Folder with web_enterprise" aria-label="Enterprise folder"><button type="button" class="btn" data-browse="enterprisePath">Browse</button></div>
-      <div id="ee-token" hidden><input class="input" name="eeToken" type="password" autocomplete="off" placeholder="GitHub token with access to odoo/enterprise" aria-label="GitHub token" style="width:100%"></div>
+      <div id="ee-token" hidden><input class="input full-width" name="eeToken" type="password" autocomplete="off" placeholder="GitHub token with access to odoo/enterprise" aria-label="GitHub token"></div>
       <span class="help" id="ee-help">Enterprise is not public: point to your own copy from odoo.com or your Odoo partner.</span></div>
       <div class="field"><label for="f-python">Python</label><div class="row"><select class="input mono" name="python" id="f-python"></select><button type="button" class="btn" data-browse-file="python">Browse</button></div><span class="help" id="python-help"></span></div>
-      <label class="check" style="margin-bottom:22px"><input type="checkbox" name="venv"> Create a separate Python environment and install the Odoo requirements</label>
+      <label class="check check-spaced-lg"><input type="checkbox" name="venv"> Create a separate Python environment and install the Odoo requirements</label>
       ${field("name", "Name", `<input class="input" name="name" placeholder="Odoo 19 Community">`)}`,
     submit: "Add instance",
     onOpen: (form) => {
@@ -784,16 +786,16 @@ function settingsDialog() {
   dialog({
     title: "Settings",
     body: `
-      <h3 style="margin:4px 0 12px;font-size:14px">PostgreSQL</h3>
-      <div class="row" style="align-items:flex-start">
+      <h3 class="settings-heading">PostgreSQL</h3>
+      <div class="row row-start">
         ${field("host", "Host", `<input class="input" name="host" value="${esc(s.pg.host)}">`)}
-        ${field("port", "Port", `<input class="input" name="port" type="number" value="${esc(s.pg.port)}" style="width:110px">`)}
+        ${field("port", "Port", `<input class="input port-input" name="port" type="number" value="${esc(s.pg.port)}">`)}
       </div>
       ${field("user", "User", `<input class="input" name="user" value="${esc(s.pg.user)}">`)}
       ${field("password", "Password", `<input class="input" name="password" type="password" placeholder="${s.pg.hasPassword ? "Saved, leave empty to keep it" : ""}" autocomplete="off">`, "Stored encrypted with your system keychain when available.")}
-      <div class="row" style="margin-bottom:16px"><button type="button" class="btn" id="pg-test">Test connection</button><span id="pg-result" class="muted"></span></div>
+      <div class="row pg-test-row"><button type="button" class="btn" id="pg-test">Test connection</button><span id="pg-result" class="muted"></span></div>
       <div class="field"><span class="label">Appearance</span><div class="choices">
-        ${[["system", "Like the system"], ["light", "Light"], ["dark", "Dark"]].map(([key, label]) => `<label class="choice"><input type="radio" name="theme" value="${key}" ${s.theme === key ? "checked" : ""}> ${label}</label>`).join("")}
+        ${[["system", "System"], ["light", "Light"], ["dark", "Dark"]].map(([key, label]) => `<label class="choice"><input type="radio" name="theme" value="${key}" ${s.theme === key ? "checked" : ""}> ${label}</label>`).join("")}
       </div></div>
       <div class="field"><span class="label">Workspace</span>${pathButton(s.workspace, true)}<span class="help">Sources, Python environments, filestores, logs and backups live here.</span></div>`,
     submit: "Save",
@@ -883,6 +885,7 @@ async function boot() {
     renderMain();
   };
   $("#open-store").onclick = () => openStore();
+  $("#open-doctor").onclick = () => api.call("shell:openUrl", "https://odoo-doctor.com");
   $("#open-support").onclick = () => supportDialog();
   api.on("log", appendLog);
   api.on("status", onStatus);
